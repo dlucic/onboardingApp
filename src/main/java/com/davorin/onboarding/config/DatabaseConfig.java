@@ -35,12 +35,13 @@ public class DatabaseConfig {
     }
 
     @Bean
-    public JdbcTemplate jdbcTemplate(){ return new JdbcTemplate(this.h2DataSource()); }
-
-/*    @Bean
     public DataSource dataSource() {
         HikariConfig config = new HikariConfig();
         config.setJdbcUrl(dbUrl);
         return new HikariDataSource(config);
-    }*/
+    }
+
+    // TODO: 25/10/2019 Postaviti ispravan datasource
+    @Bean
+    public JdbcTemplate jdbcTemplate(){ return new JdbcTemplate(this.dataSource()); }
 }
