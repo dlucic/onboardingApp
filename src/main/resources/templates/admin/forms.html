@@ -1,0 +1,16 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Forms</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  </head>
+<body>
+<h1>List of forms</h1>
+<table>
+    <tr th:each="forma : ${forms}">
+        <td th:text="${forma.getName()}">Name</td>
+    </tr>
+</table>
+<a th:href="@{/admin/forms/create}">Create new form</a>
+</body>
+</html>

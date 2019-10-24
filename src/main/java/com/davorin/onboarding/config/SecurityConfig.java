@@ -25,10 +25,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
-                .authorizeRequests()
-                .anyRequest().authenticated()
+                //Disable CRSF (Cross-Site Request Forgery). By default, Spring Security will protect against CRSF attacks.
+                .csrf().disable()
+                //Since the H2 database console runs inside a frame, you need to enable this in in Spring Security.
+                .headers().frameOptions().disable()
                 .and()
-                .httpBasic();
+                .authorizeRequests().antMatchers("/**").permitAll();
     }
 
     @Bean

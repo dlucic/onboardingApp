@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Create form</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h1>Create new form</h1>
+<form action="#" th:action="@{/admin/forms/create}" th:object="${form}" method="post">
+    <p>Name: <input type="text" th:field="*{name}" /></p>
+
+    <p>Assign forms:</p>
+    <ul>
+        <li th:each="selectableField : ${selectableFields}">
+            <input type="checkbox" name="sourceText" th:value="${selectableField.label}"/>
+            <label th:text="${selectableField.label}"></label>
+        </li>
+    </ul>
+    <p><input type="submit" value="Submit"/></p>
+</form>
+</body>
+</html>
