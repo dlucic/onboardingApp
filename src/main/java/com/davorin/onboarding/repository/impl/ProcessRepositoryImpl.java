@@ -39,7 +39,8 @@ public class ProcessRepositoryImpl implements ProcessRepository {
 
     @Override
     public Long getSequence() {
-        String query = "select PROCESS_SEQ.NEXTVAL from dual";
+//        String query = "select PROCESS_SEQ.NEXTVAL from dual";
+        String query = "select NEXTVAL('process_seq')";
         return jdbcTemplate.queryForObject(query, new Object[] {}, Long.class);
     }
 }

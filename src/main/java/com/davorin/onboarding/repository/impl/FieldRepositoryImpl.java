@@ -33,7 +33,8 @@ public class FieldRepositoryImpl implements FieldRepository {
 
     @Override
     public Long getFieldSequence() {
-        String query = "select FIELD_SEQ.NEXTVAL from dual";
+//        String query = "select FIELD_SEQ.NEXTVAL from dual";
+        String query = "select NEXTVAL('field_seq')";
         return jdbcTemplate.queryForObject(query, new Object[] {}, Long.class);
     }
 

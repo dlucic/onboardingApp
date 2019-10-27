@@ -39,7 +39,8 @@ public class FormRepositoryImpl implements FormRepository {
 
     @Override
     public Long getSequence() {
-        String sql = "select FORM_SEQ.NEXTVAL from dual";
-        return jdbcTemplate.queryForObject(sql, new Object[] {}, Long.class);
+//        String query = "select FORM_SEQ.NEXTVAL from dual";
+        String query = "select NEXTVAL('form_seq')";
+        return jdbcTemplate.queryForObject(query, new Object[] {}, Long.class);
     }
 }
