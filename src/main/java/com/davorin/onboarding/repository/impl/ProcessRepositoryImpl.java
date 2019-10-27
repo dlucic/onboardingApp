@@ -1,7 +1,7 @@
-package com.davorin.onboarding.repository;
+package com.davorin.onboarding.repository.impl;
 
 import com.davorin.onboarding.model.Process;
-import com.davorin.onboarding.model.User;
+import com.davorin.onboarding.repository.ProcessRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -19,27 +19,27 @@ public class ProcessRepositoryImpl implements ProcessRepository {
         this.jdbcTemplate = jdbcTemplate;
     }
 
+    @Override
     public List<Process> getAllProcesses() {
         String query = "SELECT * FROM process";
         return jdbcTemplate.query(query, new BeanPropertyRowMapper<>(Process.class));
     }
 
     @Override
-    public Process getProcessByUser(int userId) {
+    public Process getProcessByUser(Long userId) {
         String query = "SELECT * FROM process where user_id = ?";
         return jdbcTemplate.queryForObject(query, new BeanPropertyRowMapper<>(Process.class), userId);
-
     }
 
+    @Override
     public void saveProcess (Process process) {
-        String query = "INSERT INTO process (id, name) VALUES (?, ?)";
-        jdbcTemplate.update(query, process.getId(), process.getName());
+        String query = "INSERT INTO process (id, name, user_id) VALUES (?, ?, ?)";
+        jdbcTemplate.update(query, process.getId(), process.getName(), process.getUserId());
     }
 
+    @Override
     public Long getSequence() {
         String query = "select PROCESS_SEQ.NEXTVAL from dual";
         return jdbcTemplate.queryForObject(query, new Object[] {}, Long.class);
     }
-
-
 }

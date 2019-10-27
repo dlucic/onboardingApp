@@ -22,26 +22,25 @@ public class DatabaseConfig {
 
     private static final Logger logger = LoggerFactory.getLogger(DatabaseConfig.class);
 
-    @Bean
-    public DataSource h2DataSource() {
-        logger.info("Initializing H2 datasource");
-        EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
-        EmbeddedDatabase db = builder
-                .setType(EmbeddedDatabaseType.H2) //.H2 or .DERBY
-                .addScript("schema.sql")
-                .addScript("data.sql")
-                .build();
-        return db;
-    }
+//    @Bean
+//    public DataSource h2DataSource() {
+//        logger.info("Initializing H2 datasource");
+//        EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
+//        EmbeddedDatabase db = builder
+//                .setType(EmbeddedDatabaseType.H2) //.H2 or .DERBY
+//                .addScript("schema.sql")
+//                .addScript("data.sql")
+//                .build();
+//        return db;
+//    }
 
     @Bean
-    public DataSource dataSource() {
+    public DataSource postgresDataSource() {
         HikariConfig config = new HikariConfig();
         config.setJdbcUrl(dbUrl);
         return new HikariDataSource(config);
     }
 
-    // TODO: 25/10/2019 Postaviti ispravan datasource
     @Bean
-    public JdbcTemplate jdbcTemplate(){ return new JdbcTemplate(this.dataSource()); }
+    public JdbcTemplate jdbcTemplate(){ return new JdbcTemplate(this.postgresDataSource()); }
 }

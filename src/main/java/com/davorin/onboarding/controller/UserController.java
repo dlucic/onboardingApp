@@ -7,8 +7,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 public class UserController {
 
     private ProcessService processService;
@@ -20,10 +21,6 @@ public class UserController {
         this.formService = formService;
     }
 
-    @GetMapping("")
-    public String getProcesses(Model model){
-        model.addAttribute("process", processService.getProcessByUser(1000));
-        return "index";
-    }
+
 
 }

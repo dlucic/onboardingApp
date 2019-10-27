@@ -1,22 +1,21 @@
-<!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Create process</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-</head>
-<body>
-<h1>Create new process</h1>
-<form action="#" th:action="@{/admin/processes/create}" th:object="${process}" method="post">
-    <p>Name: <input type="text" th:field="*{name}" /></p>
-    <p>Assign forms:</p>
-    <ul>
-        <li th:each="form : ${selectableForms}">
-            <input type="checkbox" th:field="*{forms}" th:value="${form.id}"/>
-            <label th:text="${form.name}"></label>
-        </li>
-    </ul>
-    <p><input type="submit" value="Submit"/></p>
-</form>
-
-</body>
-</html>
+<!--<!DOCTYPE HTML>-->
+<!--<html>-->
+<!--<head>-->
+<!--    <title>Create process</title>-->
+<!--    <meta charset="utf-8" />-->
+<!--</head>-->
+<!--<body>-->
+<!--<h1>Create new process</h1>-->
+<!--<form action="#" th:action="@{/admin/processes/create}" th:object="${process}" method="post">-->
+<!--    <p>Name: <input type="text" th:field="*{name}" /></p>-->
+<!--    <p>Assign forms:</p>-->
+<!--    <ul>-->
+<!--        <li th:each="form : ${selectableForms}">-->
+<!--            <input type="checkbox" th:field="*{forms}" th:value="${form.id}"/>-->
+<!--            <label th:text="${form.name}"></label>-->
+<!--        </li>-->
+<!--    </ul>-->
+<!--    <p><input type="submit" value="Submit"/></p>-->
+<!--</form>-->
+<!--</body>-->
+<!--</html>-->

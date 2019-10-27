@@ -1,18 +1,32 @@
-<!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Processes</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  </head>
-<body>
-<h1>List of processes</h1>
-<table>
-    <tr th:each="process : ${processes}">
-        <td th:text="${process.getName()}">Name</td>
-    </tr>
-</table>
+<!--<!DOCTYPE HTML>-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <title>Processes</title>-->
+<!--    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />-->
+<!--  </head>-->
+<!--<body>-->
+<!--<h1>List of processes</h1>-->
+<!--<table>-->
+<!--    <tr th:each="process : ${processes}">-->
+<!--        <td th:text="${process.getName()}">Name</td>-->
+<!--    </tr>-->
+<!--</table>-->
 
-<a th:href="@{/admin/processes/create}">Create new process</a>
+<!--<a th:href="@{/admin/processes/create}">Create new process</a>-->
 
-</body>
-</html>
+<!--</body>-->
+<!--</html>-->
+
+<!--<!DOCTYPE HTML>-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <title>Administration</title>-->
+<!--    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />-->
+<!--    <link th:href="@{/resources/static/bootstrap.min.css}" rel="stylesheet" />-->
+<!--</head>-->
+<!--<body>-->
+<!--<h1>Administration</h1>-->
+<!--<a th:href="@{/admin/processes}">Processes</a>-->
+<!--<a th:href="@{/admin/forms}">Forms</a>-->
+<!--</body>-->
+<!--</html>-->

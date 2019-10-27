@@ -1,16 +1,17 @@
 package com.davorin.onboarding.controller;
 
+import com.davorin.onboarding.model.Form;
 import com.davorin.onboarding.model.Process;
 import com.davorin.onboarding.service.FormService;
 import com.davorin.onboarding.service.ProcessService;
 import com.davorin.onboarding.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
-@RequestMapping("/admin")
+import java.util.List;
+
+@RestController
+@RequestMapping("/process")
 public class ProcessController {
 
     private ProcessService processService;
@@ -24,24 +25,26 @@ public class ProcessController {
         this.userService = userService;
     }
 
-    @GetMapping("processes")
-    public String getProcesses(Model model){
-        model.addAttribute("processes", processService.getAllProcesses());
-        return "admin/process";
+    @GetMapping("/all")
+    public List<Process> getProcess(){
+        return processService.getAllProcesses();
     }
 
-    @GetMapping("processes/create")
-    public String saveProcess(Model model){
-        model.addAttribute("processes", processService.getAllProcesses());
-        model.addAttribute("selectableForms", formService.getAllForms());
-        model.addAttribute("selectableUsers", userService.getAllUsers());
-        model.addAttribute("process", new Process());
-        return "admin/createprocess";
+    @GetMapping("/user")
+    public Process getProcessByUser(@RequestParam Long id){
+        return processService.getProcessByUser(id);
     }
 
-    @PostMapping("processes/create")
-    public String saveProcess(@ModelAttribute("process") Process process){
-        processService.createProcess(process);
-        return "redirect:/admin/processes";
+    @PostMapping("/new")
+    public void newProcess(@RequestBody Process process){
+        processService.newProcess(process);
     }
+
+
+//    TODO dodati mogucnost dodavanja forme na vec postojeci proces
+//    @PostMapping("/addform")
+//    public void addForm(@RequestBody Form form){
+//        processService.addFormToProcess(form);
+//    }
+
 }

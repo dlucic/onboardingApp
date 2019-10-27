@@ -12,5 +12,5 @@ public interface ProcessRepository {
 
     Long getSequence();
 
-    Process getProcessByUser(int userId);
+    Process getProcessByUser(Long userId);
 }

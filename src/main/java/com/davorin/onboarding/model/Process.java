@@ -9,11 +9,10 @@ import java.util.List;
 @Data
 public class Process {
 
-    @Id
-    private long id;
+    private Long id;
     private String name;
-    private String userId;
-    private List<Form> forms;
+    private Long userId;
+    private List<Form> forms = new ArrayList<>();
 
     public void addForm(Form form) {
         this.forms.add(form);

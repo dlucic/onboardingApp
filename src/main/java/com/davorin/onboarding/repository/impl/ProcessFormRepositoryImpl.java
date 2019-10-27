@@ -1,11 +1,12 @@
-package com.davorin.onboarding.repository;
+package com.davorin.onboarding.repository.impl;
 
+import com.davorin.onboarding.repository.ProcessFormRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class ProcessFormRepositoryImpl implements ProcessFormRepository{
+public class ProcessFormRepositoryImpl implements ProcessFormRepository {
 
     private JdbcTemplate jdbcTemplate;
 
@@ -14,6 +15,7 @@ public class ProcessFormRepositoryImpl implements ProcessFormRepository{
         this.jdbcTemplate = jdbcTemplate;
     }
 
+    @Override
     public void saveProcessForm(long processId, long formId) {
         String query = "INSERT INTO process_form (process, form) VALUES (?, ?)";
         jdbcTemplate.update(query, processId, formId);

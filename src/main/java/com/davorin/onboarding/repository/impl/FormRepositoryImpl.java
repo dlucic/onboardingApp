@@ -1,7 +1,7 @@
-package com.davorin.onboarding.repository;
+package com.davorin.onboarding.repository.impl;
 
 import com.davorin.onboarding.model.Form;
-import com.davorin.onboarding.model.Process;
+import com.davorin.onboarding.repository.FormRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -19,26 +19,25 @@ public class FormRepositoryImpl implements FormRepository {
         this.jdbcTemplate = jdbcTemplate;
     }
 
+    @Override
     public List<Form> getAllForms() {
         String query = "SELECT id, name FROM form";
         return jdbcTemplate.query(query, new BeanPropertyRowMapper<>(Form.class));
     }
 
+    @Override
     public List<Form> getFormsByProcessId(long processId) {
         String query = "SELECT * FROM form f JOIN process_form pf on f.id = pf.form where pf.process = ?";
         return jdbcTemplate.query(query, new BeanPropertyRowMapper<>(Form.class), processId);
     }
 
-    public Form getFormById(long formId) {
-        String query = "SELECT * FROM form WHERE id = ?";
-        return jdbcTemplate.queryForObject(query, Form.class, formId);
-    }
-
+    @Override
     public void saveForm(Form form) {
-        String query = "INSERT INTO form (id, name, longtext, shorttext, date, singlechoice, multiplechoice, number, yesno) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        jdbcTemplate.update(query, form.getId(), form.getName(), form.isLongText(), form.isShortText(), form.isDate(), form.isSingleChoice(), form.isMultipleChoice(), form.isNumber(), form.isYesNo());
+        String query = "INSERT INTO form (id, name) VALUES (?, ?)";
+        jdbcTemplate.update(query, form.getId(), form.getName());
     }
 
+    @Override
     public Long getSequence() {
         String sql = "select FORM_SEQ.NEXTVAL from dual";
         return jdbcTemplate.queryForObject(sql, new Object[] {}, Long.class);

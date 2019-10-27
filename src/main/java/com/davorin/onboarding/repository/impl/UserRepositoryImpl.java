@@ -1,6 +1,7 @@
-package com.davorin.onboarding.repository;
+package com.davorin.onboarding.repository.impl;
 
 import com.davorin.onboarding.model.User;
+import com.davorin.onboarding.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -18,8 +19,9 @@ public class UserRepositoryImpl implements UserRepository {
         this.jdbcTemplate = jdbcTemplate;
     }
 
+    @Override
     public List<User> getAllUsers() {
-        String query = "SELECT * FROM users";
+        String query = "SELECT * FROM user";
         return jdbcTemplate.query(query, new BeanPropertyRowMapper<>(User.class));
     }
 }

@@ -2,38 +2,57 @@ package com.davorin.onboarding.service;
 
 import com.davorin.onboarding.model.Form;
 import com.davorin.onboarding.model.Process;
-import com.davorin.onboarding.model.User;
-import com.davorin.onboarding.repository.FormRepository;
 import com.davorin.onboarding.repository.ProcessFormRepository;
 import com.davorin.onboarding.repository.ProcessRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Set;
 
 @Service
 public class ProcessService {
 
-    @Autowired
+    private static final Logger logger = LoggerFactory.getLogger(ProcessService.class);
+
     private ProcessRepository processRepository;
+    private ProcessFormRepository processFormRepository;
+    private FormService formService;
 
     @Autowired
-    private ProcessFormRepository processFormRepository;
+    public ProcessService(ProcessRepository processRepository, ProcessFormRepository processFormRepository, FormService formService) {
+        this.processRepository = processRepository;
+        this.processFormRepository = processFormRepository;
+        this.formService = formService;
+    }
 
-    public void createProcess(Process process) {
+    public void newProcess(Process process) {
         process.setId(processRepository.getSequence());
         List<Form> forms = process.getForms();
-        forms.forEach(form -> processFormRepository.saveProcessForm(process.getId(), form.getId()));
+        forms.forEach(form -> {
+            formService.saveForm(form);
+            processFormRepository.saveProcessForm(process.getId(), form.getId());
+        });
         processRepository.saveProcess(process);
+        logger.info("Process " + process.getName() + "saved.");
     }
 
     public List<Process> getAllProcesses(){
-        return processRepository.getAllProcesses();
+        List<Process> processes = processRepository.getAllProcesses();
+        processes.forEach(process -> {
+            List<Form> forms = formService.getFormsByProcessId(process.getId());
+            formService.formSetter(forms);
+            process.setForms(forms);
+        });
+        return processes;
     }
 
-    public Process getProcessByUser(int userId) {
-        return processRepository.getProcessByUser(userId);
+    public Process getProcessByUser(Long userId) {
+        Process process = processRepository.getProcessByUser(userId);
+        List<Form> forms = formService.getFormsByProcessId(process.getId());
+        formService.formSetter(forms);
+        process.setForms(forms);
+        return process;
     }
-
 }
