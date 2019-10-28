@@ -8,11 +8,13 @@ import java.util.List;
 @Data
 public class FormData {
 
-    private String longText;
-    private String shortText;
-    private Date date;
-    private String singleChoice;
+    private Long id;
+    private Long formId;
+    private List<String> longText;
+    private List<String> shortText;
+    private List<Date> date;
+    private List<String> singleChoice;
     private List<String> multipleChoice;
-    private Integer number;
-    private boolean yesNo;
+    private List<Integer> number;
+    private List<String> yesNo;
 }

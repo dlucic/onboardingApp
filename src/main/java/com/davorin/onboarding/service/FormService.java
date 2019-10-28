@@ -40,7 +40,7 @@ public class FormService {
                     fieldService.saveFieldValue(fieldValue, field.getId()));
         });
         formRepository.saveForm(form);
-        logger.info("Form " + form.getName() + "saved!");
+        logger.info("Form " + form.getName() + " saved.");
 
     }
 

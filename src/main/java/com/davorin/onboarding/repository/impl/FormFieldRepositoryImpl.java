@@ -20,6 +20,4 @@ public class FormFieldRepositoryImpl implements FormFieldRepository {
         String query = "INSERT INTO form_field (form, field) VALUES (?, ?)";
         jdbcTemplate.update(query, formId, fieldId);
     }
-
-
 }

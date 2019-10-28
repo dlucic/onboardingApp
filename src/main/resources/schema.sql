@@ -8,6 +8,7 @@ DROP TABLE IF EXISTS process;
 DROP TABLE IF EXISTS process_form;
 DROP TABLE IF EXISTS form_field;
 DROP TABLE IF EXISTS field_value;
+DROP TABLE IF EXISTS formdata;
 DROP SEQUENCE IF EXISTS form_seq;
 DROP SEQUENCE IF EXISTS process_seq;
 DROP SEQUENCE IF EXISTS field_seq;
@@ -57,4 +58,14 @@ CREATE TABLE form_field (
     form INTEGER,
     field INTEGER,
     PRIMARY KEY (form, field)
+);
+
+
+CREATE TABLE formdata (
+    id INTEGER IDENTITY PRIMARY KEY,
+    form_id integer,
+    value_string VARCHAR(500),
+    value_date DATE,
+    value_integer INTEGER,
+    foreign key (form_id) references form(id)
 );

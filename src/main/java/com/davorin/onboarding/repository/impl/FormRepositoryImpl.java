@@ -40,7 +40,7 @@ public class FormRepositoryImpl implements FormRepository {
     @Override
     public Long getSequence() {
 //        String query = "select FORM_SEQ.NEXTVAL from dual";
-        String query = "select NEXTVAL('form_seq')";
+        String query = "select NEXTVAL('form_seq')"; //TODO Promijeni za heroku
         return jdbcTemplate.queryForObject(query, new Object[] {}, Long.class);
     }
 }

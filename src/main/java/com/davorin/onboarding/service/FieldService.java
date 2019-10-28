@@ -50,7 +50,7 @@ public class FieldService {
         Long fieldId = fieldRepository.getFieldSequence();
         field.setId(fieldId);
         fieldRepository.saveField(field);
-        logger.info("Field " + field.getLabel() + "saved.");
+        logger.info("Field " + field.getLabel() + " saved.");
     }
 
     public void saveFormField(Long formID, Long fieldId) {

@@ -35,7 +35,7 @@ public class ProcessService {
             processFormRepository.saveProcessForm(process.getId(), form.getId());
         });
         processRepository.saveProcess(process);
-        logger.info("Process " + process.getName() + "saved.");
+        logger.info("Process " + process.getName() + " saved.");
     }
 
     public List<Process> getAllProcesses(){
