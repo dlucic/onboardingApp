@@ -17,10 +17,6 @@ create sequence form_seq increment by 1;
 create sequence process_seq increment by 1;
 create sequence field_seq increment by 1;
 
-CREATE TABLE user (
-    id INTEGER IDENTITY PRIMARY KEY,
-    name VARCHAR(100),
-    );
 
 CREATE TABLE form(
     id INTEGER IDENTITY PRIMARY KEY,

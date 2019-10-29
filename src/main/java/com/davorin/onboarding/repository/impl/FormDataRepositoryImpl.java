@@ -1,7 +1,7 @@
 package com.davorin.onboarding.repository.impl;
 
-import com.davorin.onboarding.model.Form;
 import com.davorin.onboarding.model.FormData;
+import com.davorin.onboarding.model.dto.FormDataDTO;
 import com.davorin.onboarding.repository.FormDataRepository;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -68,8 +68,8 @@ public class FormDataRepositoryImpl implements FormDataRepository {
     }
 
     @Override
-    public FormData getFormDatabyId(Long id) {
+    public List<FormDataDTO> getFormDatabyId(Long id) {
         String query = "select * from formdata where form_id = ?";
-        return jdbcTemplate.queryForObject(query, new BeanPropertyRowMapper<>(FormData.class), id);
+        return jdbcTemplate.query(query, new BeanPropertyRowMapper<>(FormDataDTO.class), id);
     }
 }

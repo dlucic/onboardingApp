@@ -1,9 +1,12 @@
 package com.davorin.onboarding.service;
 
 import com.davorin.onboarding.model.FormData;
+import com.davorin.onboarding.model.dto.FormDataDTO;
 import com.davorin.onboarding.repository.FormDataRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class FormDataService {
@@ -25,7 +28,9 @@ public class FormDataService {
         formData.getYesNo().forEach(yesno -> formDataRepository.saveYesNoValue(formData.getFormId(), yesno));
     }
 
-    public FormData getFormData(Long id) {
-        return formDataRepository.getFormDatabyId(id);
+    public List<FormDataDTO> getFormDataById(Long id) {
+        List<FormDataDTO> data = formDataRepository.getFormDatabyId(id);
+
+        return data;
     }
 }

@@ -1,8 +1,8 @@
 package com.davorin.onboarding.model;
 
 import lombok.Data;
-import org.springframework.data.relational.core.mapping.Column;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -11,11 +11,11 @@ public class FormData {
 
     private Long id;
     private Long formId;
-    private List<String> longText;
-    private List<String> shortText;
-    private List<Date> dateValue;
-    private List<String> singleChoice;
-    private List<String> multipleChoice;
-    private List<Integer> numberValue;
-    private List<String> yesNo;
+    private List<String> longText = new ArrayList<>();
+    private List<String> shortText = new ArrayList<>();
+    private List<Date> dateValue = new ArrayList<>();
+    private List<String> singleChoice = new ArrayList<>();
+    private List<String> multipleChoice = new ArrayList<>();
+    private List<Integer> numberValue = new ArrayList<>();
+    private List<String> yesNo = new ArrayList<>();
 }

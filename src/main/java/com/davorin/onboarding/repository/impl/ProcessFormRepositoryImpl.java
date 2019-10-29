@@ -20,7 +20,4 @@ public class ProcessFormRepositoryImpl implements ProcessFormRepository {
         String query = "INSERT INTO process_form (process, form) VALUES (?, ?)";
         jdbcTemplate.update(query, processId, formId);
     }
-
-
-
 }

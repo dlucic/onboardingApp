@@ -1,6 +1,7 @@
 package com.davorin.onboarding.repository;
 
 import com.davorin.onboarding.model.FormData;
+import com.davorin.onboarding.model.dto.FormDataDTO;
 
 import java.util.Date;
 import java.util.List;
@@ -23,5 +24,5 @@ public interface FormDataRepository {
 
     List<FormData> getAllFormData();
 
-    FormData getFormDatabyId(Long id);
+    List<FormDataDTO> getFormDatabyId(Long id);
 }
