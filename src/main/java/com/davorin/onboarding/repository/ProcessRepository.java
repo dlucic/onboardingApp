@@ -13,4 +13,6 @@ public interface ProcessRepository {
     Long getSequence();
 
     Process getProcessByUser(Long userId);
+
+    void deleteProcess(Long id);
 }

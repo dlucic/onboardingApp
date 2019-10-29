@@ -13,4 +13,6 @@ public interface FormRepository {
     List<Form> getFormsByProcessId(long processId);
 
     Long getSequence();
+
+    void deleteForm(Long id);
 }

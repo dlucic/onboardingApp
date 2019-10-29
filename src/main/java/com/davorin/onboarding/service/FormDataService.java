@@ -16,14 +16,16 @@ public class FormDataService {
     }
 
     public void saveFormData(FormData formData) {
-        formData.getDate().forEach(date -> formDataRepository.saveDateValue(formData.getFormId(), date));
-        formData.getLongText().forEach(longtext -> formDataRepository.saveStringValue(formData.getFormId(), longtext));
-        formData.getMultipleChoice().forEach(choice -> formDataRepository.saveStringValue(formData.getFormId(), choice));
-        formData.getNumber().forEach(number -> formDataRepository.saveIntegerValue(formData.getFormId(), number));
-        formData.getShortText().forEach(shorttext -> formDataRepository.saveStringValue(formData.getFormId(), shorttext));
-        formData.getSingleChoice().forEach(choice -> formDataRepository.saveStringValue(formData.getFormId(), choice));
-        formData.getYesNo().forEach(yesno -> formDataRepository.saveStringValue(formData.getFormId(), yesno));
+        formData.getDateValue().forEach(date -> formDataRepository.saveDateValue(formData.getFormId(), date));
+        formData.getLongText().forEach(longtext -> formDataRepository.saveLongTextValue(formData.getFormId(), longtext));
+        formData.getMultipleChoice().forEach(choice -> formDataRepository.saveMultipleChoiceValue(formData.getFormId(), choice));
+        formData.getNumberValue().forEach(number -> formDataRepository.saveNumberValue(formData.getFormId(), number));
+        formData.getShortText().forEach(shorttext -> formDataRepository.saveShortTextValue(formData.getFormId(), shorttext));
+        formData.getSingleChoice().forEach(choice -> formDataRepository.saveSingleChoiceValue(formData.getFormId(), choice));
+        formData.getYesNo().forEach(yesno -> formDataRepository.saveYesNoValue(formData.getFormId(), yesno));
     }
 
-
+    public FormData getFormData(Long id) {
+        return formDataRepository.getFormDatabyId(id);
+    }
 }

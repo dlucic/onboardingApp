@@ -29,12 +29,12 @@ public class ProcessService {
 
     public void newProcess(Process process) {
         process.setId(processRepository.getSequence());
+        processRepository.saveProcess(process);
         List<Form> forms = process.getForms();
         forms.forEach(form -> {
             formService.saveForm(form);
             processFormRepository.saveProcessForm(process.getId(), form.getId());
         });
-        processRepository.saveProcess(process);
         logger.info("Process " + process.getName() + " saved.");
     }
 
@@ -54,5 +54,14 @@ public class ProcessService {
         formService.formSetter(forms);
         process.setForms(forms);
         return process;
+    }
+
+    public void deleteProcess(Long id) {
+        processRepository.deleteProcess(id);
+    }
+
+    public void addFormToProcess(Form form, Long processId) {
+        formService.saveForm(form);
+        processFormRepository.saveProcessForm(processId, form.getId());
     }
 }

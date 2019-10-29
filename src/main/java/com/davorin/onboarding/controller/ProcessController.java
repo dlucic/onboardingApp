@@ -2,9 +2,7 @@ package com.davorin.onboarding.controller;
 
 import com.davorin.onboarding.model.Form;
 import com.davorin.onboarding.model.Process;
-import com.davorin.onboarding.service.FormService;
 import com.davorin.onboarding.service.ProcessService;
-import com.davorin.onboarding.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,14 +13,10 @@ import java.util.List;
 public class ProcessController {
 
     private ProcessService processService;
-    private FormService formService;
-    private UserService userService;
 
     @Autowired
-    public ProcessController(ProcessService processService, FormService formService, UserService userService) {
+    public ProcessController(ProcessService processService) {
         this.processService = processService;
-        this.formService = formService;
-        this.userService = userService;
     }
 
     @GetMapping("/all")
@@ -40,11 +34,13 @@ public class ProcessController {
         processService.newProcess(process);
     }
 
+    @PostMapping("/addform")
+    public void addForm(@RequestBody Form form, @RequestParam Long processId){
+        processService.addFormToProcess(form, processId);
+    }
 
-//    TODO dodati mogucnost dodavanja forme na vec postojeci proces
-//    @PostMapping("/addform")
-//    public void addForm(@RequestBody Form form){
-//        processService.addFormToProcess(form);
-//    }
-
+    @DeleteMapping("/delete")
+    public void deleteProcess(@RequestParam Long id) {
+        processService.deleteProcess(id);
+    }
 }

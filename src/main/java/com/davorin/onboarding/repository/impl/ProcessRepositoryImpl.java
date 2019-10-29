@@ -40,7 +40,13 @@ public class ProcessRepositoryImpl implements ProcessRepository {
     @Override
     public Long getSequence() {
 //        String query = "select PROCESS_SEQ.NEXTVAL from dual";
-        String query = "select NEXTVAL('process_seq')"; //TODO Promijeni za heroku
+        String query = "select NEXTVAL('process_seq')";
         return jdbcTemplate.queryForObject(query, new Object[] {}, Long.class);
+    }
+
+    @Override
+    public void deleteProcess(Long id) {
+        String query = "DELETE FROM process WHERE id = ?";
+        jdbcTemplate.update(query, id);
     }
 }

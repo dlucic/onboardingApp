@@ -1,6 +1,7 @@
 package com.davorin.onboarding.model;
 
 import lombok.Data;
+import org.springframework.data.relational.core.mapping.Column;
 
 import java.util.Date;
 import java.util.List;
@@ -12,9 +13,9 @@ public class FormData {
     private Long formId;
     private List<String> longText;
     private List<String> shortText;
-    private List<Date> date;
+    private List<Date> dateValue;
     private List<String> singleChoice;
     private List<String> multipleChoice;
-    private List<Integer> number;
+    private List<Integer> numberValue;
     private List<String> yesNo;
 }

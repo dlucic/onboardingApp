@@ -32,6 +32,7 @@ public class FormService {
     public void saveForm(Form form){
         Long formId = formRepository.getSequence();
         form.setId(formId);
+        formRepository.saveForm(form);
         List<Field> fields = form.getFields();
         fields.forEach(field -> {
             fieldService.saveField(field);
@@ -39,7 +40,6 @@ public class FormService {
             field.getFieldValues().forEach(fieldValue ->
                     fieldService.saveFieldValue(fieldValue, field.getId()));
         });
-        formRepository.saveForm(form);
         logger.info("Form " + form.getName() + " saved.");
 
     }
@@ -65,5 +65,9 @@ public class FormService {
                 field.setFieldValues(fieldValues);
             });
         });
+    }
+
+    public void deleteForm(Long id) {
+        formRepository.deleteForm(id);
     }
 }

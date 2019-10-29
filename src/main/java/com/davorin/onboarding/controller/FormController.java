@@ -33,4 +33,10 @@ public class FormController {
         return formService.getFormsByProcessId(id);
     }
 
+    @DeleteMapping("/delete")
+    public void deleteForm(@RequestParam Long id) {
+        formService.deleteForm(id);
+
+    }
+
 }
