@@ -72,4 +72,10 @@ public class FormDataRepositoryImpl implements FormDataRepository {
         String query = "select * from formdata where form_id = ?";
         return jdbcTemplate.query(query, new BeanPropertyRowMapper<>(FormDataDTO.class), id);
     }
+
+    @Override
+    public void deleteFormData(Long id) {
+        String query = ("delete from formdata where form_id = ?");
+        jdbcTemplate.update(query, id);
+    }
 }

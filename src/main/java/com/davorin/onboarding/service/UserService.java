@@ -18,4 +18,12 @@ public class UserService {
     public List<User> getAllUsers() {
         return userRepository.getAllUsers();
     }
+
+    public void addUser(User user) {
+        userRepository.addUser(user);
+    }
+
+    public void removeUser(Long id) {
+        userRepository.removeUser(id);
+    }
 }

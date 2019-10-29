@@ -30,7 +30,10 @@ public class FormDataService {
 
     public List<FormDataDTO> getFormDataById(Long id) {
         List<FormDataDTO> data = formDataRepository.getFormDatabyId(id);
-
         return data;
+    }
+
+    public void deleteFormData(Long id) {
+        formDataRepository.deleteFormData(id);
     }
 }

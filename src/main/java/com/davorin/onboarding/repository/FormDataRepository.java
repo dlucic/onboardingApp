@@ -25,4 +25,7 @@ public interface FormDataRepository {
     List<FormData> getAllFormData();
 
     List<FormDataDTO> getFormDatabyId(Long id);
+
+    void deleteFormData(Long id);
+
 }

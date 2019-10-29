@@ -32,5 +32,4 @@ public class FieldController {
     public void saveField(@RequestBody Field field, @RequestParam Long formId){
         fieldService.saveField(field, formId);
     }
-
 }

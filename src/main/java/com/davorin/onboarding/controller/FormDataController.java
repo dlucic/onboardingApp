@@ -28,4 +28,9 @@ public class FormDataController {
     public List<FormDataDTO> getFormDataById(@RequestParam Long id) {
         return formDataService.getFormDataById(id);
     }
+
+    @DeleteMapping("/delete")
+    public void deleteFormData(@RequestParam Long id){
+        formDataService.deleteFormData(id);
+    }
 }

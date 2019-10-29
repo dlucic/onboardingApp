@@ -24,4 +24,16 @@ public class UserRepositoryImpl implements UserRepository {
         String query = "SELECT * FROM user";
         return jdbcTemplate.query(query, new BeanPropertyRowMapper<>(User.class));
     }
+
+    @Override
+    public void addUser(User user) {
+        String query = "INSERT INTO user (name) values (?)";
+        jdbcTemplate.update(query, user.getName());
+    }
+
+    @Override
+    public void removeUser(Long id) {
+        String query = "DELETE FROM user where id = ?";
+        jdbcTemplate.update(query, id);
+    }
 }
