@@ -46,10 +46,10 @@ public class FieldService {
         return fields;
     }
 
-    public void saveField(Field field) {
+    public void saveField(Field field, Long formId) {
         Long fieldId = fieldRepository.getFieldSequence();
         field.setId(fieldId);
-        fieldRepository.saveField(field);
+        fieldRepository.saveField(field, formId);
         logger.info("Field " + field.getLabel() + " saved.");
     }
 

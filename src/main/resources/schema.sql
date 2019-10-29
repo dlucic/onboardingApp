@@ -17,6 +17,10 @@ create sequence form_seq increment by 1;
 create sequence process_seq increment by 1;
 create sequence field_seq increment by 1;
 
+CREATE TABLE user (
+    id INTEGER IDENTITY PRIMARY KEY,
+    name VARCHAR(100),
+    );
 
 CREATE TABLE form(
     id INTEGER IDENTITY PRIMARY KEY,
@@ -26,7 +30,9 @@ CREATE TABLE form(
 CREATE TABLE field (
     id INTEGER IDENTITY PRIMARY KEY,
     label VARCHAR(50),
-    type VARCHAR(50)
+    type VARCHAR(50),
+    form_id integer,
+    foreign key (form_id) references form(id) on delete cascade
 );
 
 CREATE TABLE field_value (

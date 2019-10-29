@@ -8,7 +8,7 @@ public interface FieldRepository {
 
     List<Field> getAllFields();
 
-    void saveField(Field field);
+    void saveField(Field field, Long formId);
 
     Long getFieldSequence();
 

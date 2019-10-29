@@ -35,7 +35,7 @@ public class FormService {
         formRepository.saveForm(form);
         List<Field> fields = form.getFields();
         fields.forEach(field -> {
-            fieldService.saveField(field);
+            fieldService.saveField(field, formId);
             fieldService.saveFormField(formId, field.getId());
             field.getFieldValues().forEach(fieldValue ->
                     fieldService.saveFieldValue(fieldValue, field.getId()));

@@ -26,9 +26,9 @@ public class FieldRepositoryImpl implements FieldRepository {
     }
 
     @Override
-    public void saveField(Field field) {
-        String query = "INSERT INTO field (id, label, type) VALUES (?, ?, ?)";
-        jdbcTemplate.update(query, field.getId(), field.getLabel(), field.getType());
+    public void saveField(Field field, Long formId) {
+        String query = "INSERT INTO field (id, label, type, form_id) VALUES (?, ?, ?, ?)";
+        jdbcTemplate.update(query, field.getId(), field.getLabel(), field.getType(), formId);
     }
 
     @Override

@@ -29,8 +29,8 @@ public class FieldController {
     }
 
     @PostMapping("/add")
-    public void saveField(@RequestBody Field field){
-        fieldService.saveField(field);
+    public void saveField(@RequestBody Field field, @RequestParam Long formId){
+        fieldService.saveField(field, formId);
     }
 
 }
