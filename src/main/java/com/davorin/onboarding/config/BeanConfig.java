@@ -28,27 +28,27 @@ public class BeanConfig {
 
     private static final Logger logger = LoggerFactory.getLogger(BeanConfig.class);
 
+    @Bean
+    public DataSource h2DataSource() {
+        logger.info("Initializing H2 datasource");
+        EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
+        EmbeddedDatabase db = builder
+                .setType(EmbeddedDatabaseType.H2) //.H2 or .DERBY
+                .addScript("schema.sql")
+                .addScript("data.sql")
+                .build();
+        return db;
+    }
+
 //    @Bean
-//    public DataSource h2DataSource() {
-//        logger.info("Initializing H2 datasource");
-//        EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
-//        EmbeddedDatabase db = builder
-//                .setType(EmbeddedDatabaseType.H2) //.H2 or .DERBY
-//                .addScript("schema.sql")
-//                .addScript("data.sql")
-//                .build();
-//        return db;
+//    public DataSource postgresDataSource() {
+//        HikariConfig config = new HikariConfig();
+//        config.setJdbcUrl(dbUrl);
+//        return new HikariDataSource(config);
 //    }
 
     @Bean
-    public DataSource postgresDataSource() {
-        HikariConfig config = new HikariConfig();
-        config.setJdbcUrl(dbUrl);
-        return new HikariDataSource(config);
-    }
-
-    @Bean
-    public JdbcTemplate jdbcTemplate(){ return new JdbcTemplate(this.postgresDataSource()); }
+    public JdbcTemplate jdbcTemplate(){ return new JdbcTemplate(this.h2DataSource()); }
 
 //    @Bean
 //    public RestTemplate restTemplate() throws NoSuchAlgorithmException, KeyManagementException {

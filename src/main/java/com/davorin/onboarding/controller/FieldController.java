@@ -31,5 +31,6 @@ public class FieldController {
     @PostMapping("/add")
     public void saveField(@RequestBody Field field, @RequestParam Long formId){
         fieldService.saveField(field, formId);
+        fieldService.saveFormField(formId, field.getId());
     }
 }
