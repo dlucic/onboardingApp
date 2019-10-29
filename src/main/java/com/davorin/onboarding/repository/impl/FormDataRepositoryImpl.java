@@ -69,7 +69,7 @@ public class FormDataRepositoryImpl implements FormDataRepository {
 
     @Override
     public FormData getFormDatabyId(Long id) {
-        String query = "select * from formdata where id = ?";
+        String query = "select * from formdata where form_id = ?";
         return jdbcTemplate.queryForObject(query, new BeanPropertyRowMapper<>(FormData.class), id);
     }
 }
